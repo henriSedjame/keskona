@@ -13,6 +13,9 @@ import 'config/db-config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   var getIt = GetIt.instance;
 
   var dbConnection =
@@ -24,6 +27,7 @@ void main() async {
 
   getIt.registerSingleton<ItemRepository>(ItemRepository(dbConnection));
   getIt.registerSingleton(ItemViewNotifier());
+
 
   runApp(const MyApp());
 }

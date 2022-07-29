@@ -26,9 +26,14 @@ const String insertQuery  =
     "INSERT INTO items VALUES "
     "( @id, @label, @quantity, @position, @date, @category, @info) RETURNING *";
 
-const String updateQuery =
+const String updateQtyQuery =
     "UPDATE items SET"
     " quantity = @quantity"
+    " WHERE id = @id";
+
+const String updatePosQuery =
+    "UPDATE items SET"
+    " position = @position"
     " WHERE id = @id";
 
 const String deleteQuery =

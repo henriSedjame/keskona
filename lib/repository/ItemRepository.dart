@@ -35,13 +35,21 @@ class ItemRepository {
         .toList();
   }
 
-  Future<bool> update(String id, int quantity) async {
+  Future<bool> updateQty(String id, int quantity) async {
     if (quantity == 0) {
       return await delete(id);
     }
 
     var result = await _connection
-        .query(updateQuery, substitutionValues: {qtyParam: quantity, idParam: id});
+        .query(updateQtyQuery, substitutionValues: {qtyParam: quantity, idParam: id});
+
+    return result.affectedRowCount == 1;
+  }
+
+  Future<bool> updatePos(String id, int pos) async {
+
+    var result = await _connection
+        .query(updatePosQuery, substitutionValues: {positionParam: pos, idParam: id});
 
     return result.affectedRowCount == 1;
   }
